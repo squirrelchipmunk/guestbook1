@@ -5,7 +5,8 @@
 
 <%
 	int no = Integer.parseInt(request.getParameter("no"));
-	new GuestBookDao().deleteGuestBook(no);
+	String password = request.getParameter("password");
+	new GuestBookDao().deleteGuestBook(no, password);
 	
 	response.sendRedirect("addList.jsp");
 %>
