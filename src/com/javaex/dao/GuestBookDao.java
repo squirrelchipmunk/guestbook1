@@ -69,28 +69,7 @@ public class GuestBookDao {
 		close();
 	}
 	
-	public void deleteGuestBook(int no) {
-
-		try {
-			getConnection();
-
-			String query ="";
-			query += " delete from guestbook ";
-		    query += " where no = ? ";
-
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, no);
-			
-			int count = pstmt.executeUpdate();  
-			System.out.println("["+count + " 건이 삭제되었습니다.]");
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} 
-		
-		close();
-	}
-	
-	public void deleteGuestBook(int no, String password) {
+	public void deleteGuestBook(GuestBookVo vo) {
 
 		try {
 			getConnection();
@@ -100,8 +79,8 @@ public class GuestBookDao {
 		    query += " where no = ? and password = ? ";
 
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, no);
-			pstmt.setString(2, password);
+			pstmt.setInt(1, vo.getNo());
+			pstmt.setString(2, vo.getPassword());
 			
 			int count = pstmt.executeUpdate();  
 			System.out.println("["+count + " 건이 삭제되었습니다.]");
